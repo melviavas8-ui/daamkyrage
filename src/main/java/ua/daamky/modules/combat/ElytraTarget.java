@@ -60,32 +60,10 @@ public class ElytraTarget extends Module {
    private boolean eventAttach = false;
    private LivingEntity serverRead = null;
    private static final int positionAdvance = 2048;
-   private static final RenderPipeline frameCheck = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lequal_depth_test"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderPipeline moduleCollect = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lines"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer providerClose = RenderLayer.of(
-      "elytra_target_fill", 2048, false, true, frameCheck, MultiPhaseParameters.builder().build(false)
-   );
-   private static final RenderLayer presetSave = RenderLayer.of(
-      "elytra_target_line", 2048, false, true, moduleCollect, MultiPhaseParameters.builder().lineWidth(new LineWidth(OptionalDouble.of(2.0))).build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer providerClose = RenderLayer.getTranslucent();
+   private static final RenderLayer presetSave = RenderLayer.getTranslucent();
 
    public ElytraTarget() {
       this.handle(

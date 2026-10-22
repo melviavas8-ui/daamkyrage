@@ -122,32 +122,10 @@ public class CocoaFarm extends Module {
    private boolean targetWrite;
    private static final int[] resultEncode = new int[]{0, -1, 1, -2, 2, -3, -4};
    private static final int messageParse = 4096;
-   private static final RenderPipeline providerRead = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "cocoa_zone_fill"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.TRANSLUCENT)
-         .build()
-   );
-   private static final RenderPipeline matrixBlend2 = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "cocoa_zone_glow"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer scalePerform = RenderLayer.of(
-      "cocoa_zone_fill", 4096, false, true, providerRead, MultiPhaseParameters.builder().build(false)
-   );
-   private static final RenderLayer contextExpand = RenderLayer.of(
-      "cocoa_zone_glow", 4096, false, true, matrixBlend2, MultiPhaseParameters.builder().build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer scalePerform = RenderLayer.getTranslucent();
+   private static final RenderLayer contextExpand = RenderLayer.getTranslucent();
    private static final int keyProcess = -65409;
    private static final int actionConvert = -8781569;
    private static final int screenRead = 657938;

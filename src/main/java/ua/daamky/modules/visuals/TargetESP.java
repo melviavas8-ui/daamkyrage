@@ -87,111 +87,26 @@ public class TargetESP extends Module implements HudElementRenderer {
    private float sourceBuild = 0.0F;
    private static final int outputCollapse = 1024;
    private static final String profileInvoke = "daamky";
-   private static final RenderPipeline sourceSchedule = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "pipeline/world/textured_quads"))
-         .withVertexFormat(VertexFormats.POSITION_TEXTURE_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderPipeline timerRender = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "pipeline/world/textured_quads"))
-         .withVertexFormat(VertexFormats.POSITION_TEXTURE_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
    private static final RenderLayer scaleSave = handle(itemProject, timerRender);
    private static final RenderLayer colorCompute = handle(providerFetch, timerRender);
    private static final RenderLayer scaleAdapt = handle(responseCompute, timerRender);
    private static final RenderLayer textureRun = handle(profileDraw, sourceSchedule);
    private static final RenderLayer indexBind = handle(vectorPerform, sourceSchedule);
-   private static final RenderPipeline actionRead = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lequal_depth_test"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.TRIANGLE_STRIP)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderPipeline configCollapse = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lines"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINE_STRIP)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer dataValidate = RenderLayer.of("ring_strip", 1024, false, true, actionRead, MultiPhaseParameters.builder().build(false));
-   private static final RenderLayer scaleRender = RenderLayer.of("ring_line", 1024, false, true, configCollapse, MultiPhaseParameters.builder().build(false));
-   private static final RenderPipeline clientRefresh = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "pipeline/world/color_quads"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer keyFilter = RenderLayer.of("color_quads", 1024, false, true, clientRefresh, MultiPhaseParameters.builder().build(false));
-   private static final RenderPipeline requestAdapt = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lines"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderPipeline timerMeasure = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "targetesp_cube_lines"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer vectorEncode = RenderLayer.of(
-      "targetesp_cube_lines", 1024, false, true, timerMeasure, MultiPhaseParameters.builder().build(false)
-   );
-   private static final RenderPipeline requestReceive = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "targetesp_cube_fill"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.TRANSLUCENT)
-         .build()
-   );
-   static final RenderLayer windowProcess = RenderLayer.of(
-      "targetesp_cube_fill", 1024, false, true, requestReceive, MultiPhaseParameters.builder().build(false)
-   );
-   private static final RenderPipeline packetSave = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "targetesp_cube_outline"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.TRANSLUCENT)
-         .build()
-   );
-   static final RenderLayer entryAnimate = RenderLayer.of("targetesp_cube_outline", 1024, false, true, packetSave, MultiPhaseParameters.builder().build(false));
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer dataValidate = RenderLayer.getTranslucent();
+   private static final RenderLayer scaleRender = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer keyFilter = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer vectorEncode = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   static final RenderLayer windowProcess = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   static final RenderLayer entryAnimate = RenderLayer.getTranslucent();
 
    public TargetESP() {
       this.handle(source, target, pending, previous, latest);

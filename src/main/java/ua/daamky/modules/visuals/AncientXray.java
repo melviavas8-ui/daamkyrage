@@ -50,17 +50,8 @@ public class AncientXray extends Module {
    private static final int[] latest = new int[]{4, 10, 20, 40};
    private long summary = 0L;
    private static final int matrixBlend = 4096;
-   private static final RenderPipeline vectorMatch = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "block_esp_box"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer itemProject = RenderLayer.of("block_esp_box", 4096, false, true, vectorMatch, MultiPhaseParameters.builder().build(false));
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer itemProject = RenderLayer.getTranslucent();
 
    @Override
    public void handle() {

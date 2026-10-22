@@ -47,17 +47,8 @@ public class XrayCommand extends Command {
    private int handler = 12;
    private long animationDraw;
    private final List<BlockPos> pointEncode = new ArrayList<>();
-   private static final RenderPipeline animator = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "xray_box"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer source = RenderLayer.of("xray_box", 4096, false, true, animator, MultiPhaseParameters.builder().build(false));
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer source = RenderLayer.getTranslucent();
 
    public XrayCommand() {
       super("xray", "Подсветка блока в заданном радиусе", ".xray <block|clear/off/reset/help> [r,g,b] [radius]");

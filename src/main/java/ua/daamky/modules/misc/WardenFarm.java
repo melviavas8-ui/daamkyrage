@@ -273,19 +273,8 @@ public class WardenFarm extends Module {
    private boolean providerMatch = false;
    private long profileWrite = 0L;
    private static final int effectMatch = 65536;
-   private static final RenderPipeline cacheExecute = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "block_esp_box"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer pointSynchronize = RenderLayer.of(
-      "chest_esp_box", 65536, false, true, cacheExecute, MultiPhaseParameters.builder().build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer pointSynchronize = RenderLayer.getTranslucent();
 
    public WardenFarm() {
       this.handle(

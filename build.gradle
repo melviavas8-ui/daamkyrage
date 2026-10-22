@@ -48,6 +48,7 @@ dependencies {
     modLocalRuntime files('libs/baritone-1.21.4.jar')
     modLocalRuntime files('libs/nether-pathfinder-1.4.1.jar')
     compileOnly files('libs/mcef-fabric-2.1.6-1.21.4.jar')
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
 }
 
 java {

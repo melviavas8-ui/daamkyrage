@@ -2033,10 +2033,10 @@ public class Predictions extends Module {
             .withBlend(sourceSchedule)
             .build()
       );
-      textureRun = RenderLayer.of("wild_prediction_glass", 2097152, false, true, timerRender, MultiPhaseParameters.builder().build(false));
-      indexBind = RenderLayer.of("wild_prediction_glass_no_depth", 2097152, false, true, scaleSave, MultiPhaseParameters.builder().build(false));
-      actionRead = RenderLayer.of("wild_prediction_emission", 2097152, false, true, colorCompute, MultiPhaseParameters.builder().build(false));
-      configCollapse = RenderLayer.of("wild_prediction_emission_no_depth", 2097152, false, true, scaleAdapt, MultiPhaseParameters.builder().build(false));
+      textureRun = RenderLayer.getTranslucent();
+      indexBind = RenderLayer.getTranslucent();
+      actionRead = RenderLayer.getTranslucent();
+      configCollapse = RenderLayer.getTranslucent();
    }
 
    record DataRecord(double speed, double gravity, float pitchOffset, boolean applyPhysicsBeforeMove) {

@@ -316,56 +316,14 @@ public class ServerHelper extends Module {
    );
    private static final Pattern optionAdvance2 = Pattern.compile("координатах\\s+(-?\\d+)\\s+(-?\\d+)\\s+(-?\\d+)");
    private static final int clientDraw = 1024;
-   private static final RenderPipeline providerMatch = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "helper_box"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer profileWrite = RenderLayer.of("helper_box", 1024, false, true, providerMatch, MultiPhaseParameters.builder().build(false));
-   private static final RenderPipeline effectMatch = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "helper_lines"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer cacheExecute = RenderLayer.of(
-      "helper_lines", 1024, false, true, effectMatch, MultiPhaseParameters.builder().lineWidth(new LineWidth(OptionalDouble.of(10.0))).build(false)
-   );
-   private static final RenderPipeline pointSynchronize = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "helper_box_no_depth"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer sessionBind = RenderLayer.of(
-      "helper_box_no_depth", 1024, false, true, pointSynchronize, MultiPhaseParameters.builder().build(false)
-   );
-   private static final RenderPipeline indexCancel = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "helper_lines_no_depth"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer elementStop = RenderLayer.of(
-      "helper_lines_no_depth", 1024, false, true, indexCancel, MultiPhaseParameters.builder().lineWidth(new LineWidth(OptionalDouble.of(10.0))).build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer profileWrite = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer cacheExecute = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer sessionBind = RenderLayer.getTranslucent();
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer elementStop = RenderLayer.getTranslucent();
 
    public ServerHelper() {
       source = this;

@@ -156,19 +156,8 @@ public class ServerDHelper extends Module {
    private static final double requestReceive = 2000.0;
    private static final double windowProcess = 62500.0;
    private static final int packetSave = 1024;
-   private static final RenderPipeline entryAnimate = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "block_esp_box"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer playerCollect = RenderLayer.of(
-      "chest_esp_box", 1024, false, true, entryAnimate, MultiPhaseParameters.builder().build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer playerCollect = RenderLayer.getTranslucent();
 
    public ServerDHelper() {
       this.handle(

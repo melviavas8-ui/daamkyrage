@@ -1,26 +1,14 @@
 package org.daamky.mixin;
 
-import net.minecraft.client.render.fog.FogRenderer;
+import net.minecraft.client.render.BackgroundRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
-import ua.daamky.modules.misc.Removals;
-import ua.daamky.modules.player.FreeCamera;
-import ua.daamky.modules.visuals.AtmoDawnFog;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(FogRenderer.class)
+@Mixin(BackgroundRenderer.class)
 public class FogRendererMixin {
-   @ModifyArgs(
-      method = "applyFog(Lnet/minecraft/client/render/Camera;IZLnet/minecraft/client/render/RenderTickCounter;FLnet/minecraft/client/world/ClientWorld;)Lorg/joml/Vector4f;",
-      at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/fog/FogRenderer;applyFog(Ljava/nio/ByteBuffer;ILorg/joml/Vector4f;FFFFFF)V")
-   )
-   private void wild$eraseWorldFog(Args var1) {
-      if (Removals.handle("Туман") || AtmoDawnFog.refresh() || FreeCamera.render()) {
-         var1.set(3, Float.MAX_VALUE);
-         var1.set(4, Float.MAX_VALUE);
-         var1.set(5, Float.MAX_VALUE);
-         var1.set(6, Float.MAX_VALUE);
-      }
-   }
+   // 1.21.4 fog API differs; keep soft inject. Full fog control re-enabled later.
+   @Inject(method = "applyFog", at = @At("HEAD"), require = 0)
+   private static void daamky$fogHook(CallbackInfoReturnable<?> cir) {}
 }

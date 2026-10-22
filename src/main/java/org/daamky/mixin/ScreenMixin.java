@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.screen.world.SelectWorldScreen;
 import net.minecraft.text.Style;
-import net.minecraft.text.ClickEvent.RunCommand;
+import net.minecraft.text.ClickEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -39,7 +39,7 @@ public class ScreenMixin {
    @Inject(method = "handleTextClick", at = @At("HEAD"), cancellable = true)
    private void litka$interceptClientCommands(Style var1, CallbackInfoReturnable<Boolean> var2) {
       if (DaamkyClient.prepare()) {
-         if (var1 != null && var1.getClickEvent() instanceof RunCommand var3) {
+         if (var1 != null && var1.getClickEvent() instanceof ClickEvent var3) {
             String var5 = var3.command();
             if (var5 != null && var5.startsWith(DaamkyClient.instance.fetchProvider())) {
                DaamkyClient.instance.projectItem().handle(var5);

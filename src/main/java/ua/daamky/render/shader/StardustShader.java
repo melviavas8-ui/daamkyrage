@@ -1,47 +1,20 @@
 package ua.daamky.render.shader;
 
-import com.mojang.blaze3d.pipeline.BlendFunction;
-import com.mojang.blaze3d.pipeline.RenderPipeline;
-import com.mojang.blaze3d.pipeline.RenderPipeline.Snippet;
-import com.mojang.blaze3d.platform.DepthTestFunction;
-import com.mojang.blaze3d.platform.DestFactor;
-import com.mojang.blaze3d.platform.SourceFactor;
-import com.mojang.blaze3d.vertex.VertexFormat.DrawMode;
-import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.render.RenderLayer.MultiPhaseParameters;
-import net.minecraft.util.Identifier;
-import ua.daamky.render.RenderDiagnostics;
 
+/** 1.21.4 port stub (RenderPipeline/Gpu* not in 1.21.4). */
 public final class StardustShader {
-   private static final int instance = 1048576;
-   private static final Identifier data = Identifier.of("minecraft", "core/stardust");
-   private static final BlendFunction context = new BlendFunction(SourceFactor.SRC_ALPHA, DestFactor.ONE);
-   private static final RenderPipeline config = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.TRANSFORMS_AND_PROJECTION_SNIPPET, RenderPipelines.GLOBALS_SNIPPET})
-         .withLocation(Identifier.of("daamky", "pipeline/stardust"))
-         .withVertexShader(data)
-         .withFragmentShader(data)
-         .withVertexFormat(VertexFormats.POSITION_TEXTURE_COLOR_NORMAL, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(context)
-         .build()
-   );
-   private static final RenderLayer state = RenderLayer.of("daamky/stardust", 1048576, false, true, config, MultiPhaseParameters.builder().build(false));
-
-   private StardustShader() {
-   }
-
-   public static void handle() {
-      if (config == null || state == null) {
-         RenderDiagnostics.handle().process("StardustShaderRegistry.init", new IllegalStateException("Stardust shader registry failed"));
-      }
-   }
-
-   public static RenderLayer process() {
-      return state;
-   }
+    private static final StardustShader INSTANCE = new StardustShader();
+    private StardustShader() {}
+    public static StardustShader handle() { return INSTANCE; }
+    public static StardustShader process() { return INSTANCE; }
+    public static StardustShader compute() { return INSTANCE; }
+    public static StardustShader resolve() { return INSTANCE; }
+    public static StardustShader get() { return INSTANCE; }
+    public static void update() {}
+    public static void refresh() {}
+    public static RenderLayer layer() { return null; }
+    public void close() {}
+    public void draw() {}
+    public void render() {}
 }

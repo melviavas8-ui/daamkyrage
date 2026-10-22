@@ -48,32 +48,10 @@ public class ESP extends Module {
    public final BooleanSetting previous = new BooleanSetting("Outline", true);
    private final List<Entity> vectorMatch = new ArrayList<>(96);
    private final int[] itemProject = new int[4];
-   private static final RenderPipeline responseCompute = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lequal_depth_test"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderPipeline providerFetch = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("minecraft", "rendertype_lines"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.DEBUG_LINES)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer profileDraw = RenderLayer.of(
-      "litka_esp_fill", 2048, false, true, responseCompute, MultiPhaseParameters.builder().build(false)
-   );
-   private static final RenderLayer vectorPerform = RenderLayer.of(
-      "litka_esp_line", 2048, false, true, providerFetch, MultiPhaseParameters.builder().lineWidth(new LineWidth(OptionalDouble.of(2.2))).build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer profileDraw = RenderLayer.getTranslucent();
+   private static final RenderLayer vectorPerform = RenderLayer.getTranslucent();
 
    public ESP() {
       this.handle(this.source, this.target, this.pending, this.previous);

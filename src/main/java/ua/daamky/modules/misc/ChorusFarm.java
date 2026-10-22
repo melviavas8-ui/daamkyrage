@@ -156,28 +156,10 @@ public class ChorusFarm extends Module {
    private boolean indexSave;
    private static final int indexCheck = 4096;
    private static final int settingSchedule = 16;
-   private static final RenderPipeline inputAcquire = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "chorus_zone_fill"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.TRANSLUCENT)
-         .build()
-   );
-   private static final RenderPipeline listenerRun = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "chorus_zone_glow"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer indexLoad = RenderLayer.of("chorus_zone_fill", 4096, false, true, inputAcquire, MultiPhaseParameters.builder().build(false));
-   private static final RenderLayer layoutSave = RenderLayer.of("chorus_zone_glow", 4096, false, true, listenerRun, MultiPhaseParameters.builder().build(false));
+   /* RenderPipeline removed for 1.21.4 */
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer indexLoad = RenderLayer.getTranslucent();
+   private static final RenderLayer layoutSave = RenderLayer.getTranslucent();
    private static final int blockRun = -2995201;
    private static final int playerEvaluate = -9822240;
    private static final int outputFetch = 18;

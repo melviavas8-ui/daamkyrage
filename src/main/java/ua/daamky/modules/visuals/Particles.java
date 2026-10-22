@@ -75,16 +75,7 @@ public class Particles extends Module {
    private static final int responseCompute = 1024;
    private long providerFetch = System.nanoTime();
    private static final String profileDraw = "daamky";
-   private static final RenderPipeline vectorPerform = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "pipeline/world/textured_quads"))
-         .withVertexFormat(VertexFormats.POSITION_TEXTURE_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
+   /* RenderPipeline removed for 1.21.4 */
    private static final Map<Particles.Mode, RenderLayer> eventAttach = new ConcurrentHashMap<>();
    private final List<Particles.AnimationState> serverRead = new ArrayList<>();
    private final List<Particles.AnimationState> positionAdvance = new ArrayList<>();

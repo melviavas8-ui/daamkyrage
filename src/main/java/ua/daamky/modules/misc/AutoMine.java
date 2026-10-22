@@ -119,19 +119,8 @@ public class AutoMine extends Module {
    private static final AutoMine.DataRecord configCollapse = new AutoMine.DataRecord("", 0);
    private GenericContainerScreen dataValidate;
    private static final int scaleRender = 1024;
-   private static final RenderPipeline clientRefresh = RenderPipelines.register(
-      RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
-         .withLocation(Identifier.of("daamky", "automine_block_box"))
-         .withVertexFormat(VertexFormats.POSITION_COLOR, DrawMode.QUADS)
-         .withCull(false)
-         .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
-         .withDepthWrite(false)
-         .withBlend(BlendFunction.LIGHTNING)
-         .build()
-   );
-   private static final RenderLayer keyFilter = RenderLayer.of(
-      "automine_block_box", 1024, false, true, clientRefresh, MultiPhaseParameters.builder().build(false)
-   );
+   /* RenderPipeline removed for 1.21.4 */
+   private static final RenderLayer keyFilter = RenderLayer.getTranslucent();
 
    public AutoMine() {
       this.handle(this.source, this.target, this.pending, this.previous, this.latest);
