@@ -1,0 +1,7 @@
+package ua.daamky.network;
+
+import com.sun.jna.Callback;
+
+public interface DiscordDisconnectCallback extends Callback {
+   void apply(int var1, String var2);
+}

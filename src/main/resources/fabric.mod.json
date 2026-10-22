@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "daamky",
+  "version": "${version}",
+  "name": "Daamky Rage",
+  "description": "",
+  "authors": ["NONE"],
+  "contact": { "homepage": "", "issues": "" },
+  "license": "MIT",
+  "icon": "assets/daamky/fonts/daamkyICO.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["ua.daamky.DaamkyClient"]
+  },
+  "mixins": ["daamky_mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "fabric": "*",
+    "minecraft": "~1.21.4"
+  },
+  "suggests": {
+    "viafabricplus": ">=4.2.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Telegram": "https://t.me/daamkyclient"
+      }
+    }
+  }
+}
